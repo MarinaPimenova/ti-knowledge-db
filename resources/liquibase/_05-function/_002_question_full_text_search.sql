@@ -1,4 +1,4 @@
-DROP FUNCTION IF EXISTS knowledge.question_full_text_search;
+DROP FUNCTION IF EXISTS knowledge.question_full_text_search CASCADE;
 -- Question
 CREATE OR REPLACE FUNCTION knowledge.question_full_text_search(pattern VARCHAR)
     RETURNS TABLE
@@ -26,6 +26,6 @@ BEGIN
                  FROM knowledge.question q
                           left join knowledge.project_question pq on q.id = pq.question_id
                           left join knowledge.project p on pq.project_id = p.id
-                 WHERE to_tsvector('english', COALESCE(question, '')) @@ plainto_tsquery('english', pattern);
+                 WHERE to_tsvector('english', COALESCE(q.question, '')) @@ plainto_tsquery('english', pattern);
 END;
 $$ LANGUAGE plpgsql;
