@@ -45,5 +45,12 @@
                 relativeToChangelogFile="true"
                 encoding="UTF-8"
                 splitStatements="false"/>
+
+    <changeSet id="6" author="pm">
+        <sqlFile
+                path="_006_delete_question.sql"
+                relativeToChangelogFile="true"
+                encoding="UTF-8"
+                splitStatements="false"/>
     </changeSet>
 </databaseChangeLog>
