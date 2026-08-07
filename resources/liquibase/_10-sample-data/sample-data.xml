@@ -7,49 +7,65 @@
             http://www.liquibase.org/xml/ns/dbchangelog
             http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
 
-    <changeSet id="14" author="pm">
+    <changeSet id="1" author="pm">
         <sqlFile
-                path="_05-sample-data/_014_insert_project.sql"
+                path="_001_insert_project.sql"
                 relativeToChangelogFile="true"
                 encoding="UTF-8"
                 splitStatements="false"/>
     </changeSet>
 
-    <changeSet id="15" author="pm">
+    <changeSet id="2" author="pm">
         <sqlFile
-                path="_05-sample-data/_015_insert_question.sql"
+                path="_002_insert_question.sql"
                 relativeToChangelogFile="true"
                 encoding="UTF-8"
                 splitStatements="false"/>
     </changeSet>
 
-    <changeSet id="16" author="pm">
+    <changeSet id="3" author="pm">
         <sqlFile
-                path="_05-sample-data/_016_insert_resource.sql"
+                path="_003_insert_resource.sql"
                 relativeToChangelogFile="true"
                 encoding="UTF-8"
                 splitStatements="false"/>
     </changeSet>
 
-    <changeSet id="17" author="pm">
+    <changeSet id="4" author="pm">
         <sqlFile
-                path="_05-sample-data/_017_insert_code_example.sql"
+                path="_004_insert_code_example.sql"
                 relativeToChangelogFile="true"
                 encoding="UTF-8"
                 splitStatements="false"/>
     </changeSet>
 
-    <changeSet id="18" author="pm">
+    <changeSet id="5" author="pm">
         <sqlFile
-                path="_05-sample-data/_018_insert_question_tag.sql"
+                path="_005_insert_question_tag.sql"
                 relativeToChangelogFile="true"
                 encoding="UTF-8"
                 splitStatements="false"/>
     </changeSet>
 
-    <changeSet id="19" author="pm">
+    <changeSet id="6" author="pm">
         <sqlFile
-                path="_05-sample-data/_019_insert_project_question.sql"
+                path="_006_insert_project_question.sql"
+                relativeToChangelogFile="true"
+                encoding="UTF-8"
+                splitStatements="false"/>
+    </changeSet>
+
+    <changeSet id="7" author="pm">
+        <sqlFile
+                path="_007_insert_question_resource.sql"
+                relativeToChangelogFile="true"
+                encoding="UTF-8"
+                splitStatements="false"/>
+    </changeSet>
+
+    <changeSet id="8" author="pm">
+        <sqlFile
+                path="_008_insert_question_code_example.sql"
                 relativeToChangelogFile="true"
                 encoding="UTF-8"
                 splitStatements="false"/>

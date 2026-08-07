@@ -8,15 +8,23 @@
             http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
 
     <include
-            file="schema.xml"
+            file="_01-schema/schema.xml"
             relativeToChangelogFile="true"/>
     <include
-            file="reference-data.xml"
+            file="_02-reference-data/reference-data.xml"
             relativeToChangelogFile="true"/>
-
+    <include
+            file="_03-data-type/data-type.xml"
+            relativeToChangelogFile="true"/>
+    <include
+            file="_04-view/view.xml"
+            relativeToChangelogFile="true"/>
+    <include
+            file="_05-function/function.xml"
+            relativeToChangelogFile="true"/>
     <!-- Executed only for local and development environments -->
     <include
-            file="sample-data.xml"
+            file="_10-sample-data/sample-data.xml"
             relativeToChangelogFile="true"
             context="local,dev"/>
 

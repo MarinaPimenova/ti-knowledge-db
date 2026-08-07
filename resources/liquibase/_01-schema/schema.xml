@@ -9,7 +9,7 @@
 
     <changeSet id="1" author="pm">
         <sqlFile
-                path="_01-schema/_001_create_schema.sql"
+                path="_001_create_schema.sql"
                 relativeToChangelogFile="true"
                 encoding="UTF-8"
                 splitStatements="false"/>
@@ -17,7 +17,7 @@
 
     <changeSet id="2" author="pm">
         <sqlFile
-                path="_01-schema/_002_create_project_table.sql"
+                path="_002_create_project_table.sql"
                 relativeToChangelogFile="true"
                 encoding="UTF-8"
                 splitStatements="false"/>
@@ -25,7 +25,7 @@
 
     <changeSet id="3" author="pm">
         <sqlFile
-                path="_01-schema/_003_create_category_table.sql"
+                path="_003_create_category_table.sql"
                 relativeToChangelogFile="true"
                 encoding="UTF-8"
                 splitStatements="false"/>
@@ -33,7 +33,7 @@
 
     <changeSet id="4" author="pm">
         <sqlFile
-                path="_01-schema/_004_create_tag_table.sql"
+                path="_004_create_tag_table.sql"
                 relativeToChangelogFile="true"
                 encoding="UTF-8"
                 splitStatements="false"/>
@@ -41,7 +41,7 @@
 
     <changeSet id="5" author="pm">
         <sqlFile
-                path="_01-schema/_005_create_question_level_table.sql"
+                path="_005_create_question_level_table.sql"
                 relativeToChangelogFile="true"
                 encoding="UTF-8"
                 splitStatements="false"/>
@@ -49,7 +49,7 @@
 
     <changeSet id="6" author="pm">
         <sqlFile
-                path="_01-schema/_006_create_question_table.sql"
+                path="_006_create_question_table.sql"
                 relativeToChangelogFile="true"
                 encoding="UTF-8"
                 splitStatements="false"/>
@@ -57,7 +57,15 @@
 
     <changeSet id="7" author="pm">
         <sqlFile
-                path="_01-schema/_007_create_resource_table.sql"
+                path="_007_create_resource_table.sql"
+                relativeToChangelogFile="true"
+                encoding="UTF-8"
+                splitStatements="false"/>
+    </changeSet>
+
+    <changeSet id="7_2" author="pm">
+        <sqlFile
+                path="_007_2_create_question_resource_table.sql"
                 relativeToChangelogFile="true"
                 encoding="UTF-8"
                 splitStatements="false"/>
@@ -65,7 +73,15 @@
 
     <changeSet id="8" author="pm">
         <sqlFile
-                path="_01-schema/_008_create_code_example_table.sql"
+                path="_008_create_code_example_table.sql"
+                relativeToChangelogFile="true"
+                encoding="UTF-8"
+                splitStatements="false"/>
+    </changeSet>
+
+    <changeSet id="8_2" author="pm">
+        <sqlFile
+                path="_008_2_create_question_code_example_table.sql"
                 relativeToChangelogFile="true"
                 encoding="UTF-8"
                 splitStatements="false"/>
@@ -73,7 +89,7 @@
 
     <changeSet id="9" author="pm">
         <sqlFile
-                path="_01-schema/_009_create_question_tag_table.sql"
+                path="_009_create_question_tag_table.sql"
                 relativeToChangelogFile="true"
                 encoding="UTF-8"
                 splitStatements="false"/>
@@ -81,7 +97,7 @@
 
     <changeSet id="10" author="pm">
         <sqlFile
-                path="_01-schema/_010_create_project_question_table.sql"
+                path="_010_create_project_question_table.sql"
                 relativeToChangelogFile="true"
                 encoding="UTF-8"
                 splitStatements="false"/>

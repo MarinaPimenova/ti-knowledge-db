@@ -7,28 +7,43 @@
             http://www.liquibase.org/xml/ns/dbchangelog
             http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
 
-    <changeSet id="12" author="pm">
+    <changeSet id="1" author="pm">
         <sqlFile
-                path="_02-reference-data/_011_insert_question_level.sql"
+                path="_001_replace_whitespaces_and_get_first.sql"
                 relativeToChangelogFile="true"
                 encoding="UTF-8"
                 splitStatements="false"/>
     </changeSet>
 
-    <changeSet id="13" author="pm">
+    <changeSet id="2" author="pm">
         <sqlFile
-                path="_02-reference-data/_012_insert_knowledge_category.sql"
+                path="_002_question_full_text_search.sql"
                 relativeToChangelogFile="true"
                 encoding="UTF-8"
                 splitStatements="false"/>
     </changeSet>
 
-    <changeSet id="14" author="pm">
+    <changeSet id="3" author="pm">
         <sqlFile
-                path="_02-reference-data/_013_insert_knowledge_tag.sql"
+                path="_003_answer_full_text_search.sql"
                 relativeToChangelogFile="true"
                 encoding="UTF-8"
                 splitStatements="false"/>
     </changeSet>
 
+    <changeSet id="4" author="pm">
+        <sqlFile
+                path=""
+                relativeToChangelogFile="true"
+                encoding="UTF-8"
+                splitStatements="false"/>
+    </changeSet>
+
+    <changeSet id="5" author="pm">
+        <sqlFile
+                path=""
+                relativeToChangelogFile="true"
+                encoding="UTF-8"
+                splitStatements="false"/>
+    </changeSet>
 </databaseChangeLog>
