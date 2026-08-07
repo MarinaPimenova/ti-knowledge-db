@@ -1,0 +1,1 @@
+SELECT knowledge.answer_full_text_search('Java   Spring   Boot');

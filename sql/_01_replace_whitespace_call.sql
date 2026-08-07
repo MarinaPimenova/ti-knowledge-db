@@ -1,0 +1,1 @@
+SELECT knowledge.replace_whitespaces_and_get_first('Java   Spring   Boot');

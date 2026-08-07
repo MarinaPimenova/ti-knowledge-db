@@ -1,0 +1,32 @@
+services:
+
+  postgres:
+    image: postgres:17
+    container_name: knowledge-postgres
+
+    environment:
+      POSTGRES_DB: knowledge_db
+      POSTGRES_USER: knowledge_user
+      POSTGRES_PASSWORD: qwerty
+
+    ports:
+      - "5432:5432"
+
+    volumes:
+      # initialization scripts
+      - ./kb-sql:/docker-entrypoint-initdb.d
+
+      # PostgreSQL data
+      - postgres-data:/var/lib/postgresql/data
+
+    networks:
+      - knowledge-network
+
+
+volumes:
+  postgres-data:
+
+
+networks:
+  knowledge-network:
+    name: knowledge-network
