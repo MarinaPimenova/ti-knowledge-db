@@ -26,7 +26,6 @@ BEGIN
                  FROM knowledge.question q
                           left join knowledge.project_question pq on q.id = pq.question_id
                           left join knowledge.project p on pq.project_id = p.id
-                 WHERE to_tsvector('english', COALESCE(question, '') || ' ' || COALESCE(short_answer, '')) @@
-                       plainto_tsquery('english', pattern);
+                 WHERE to_tsvector('english', COALESCE(question, '')) @@ plainto_tsquery('english', pattern);
 END;
 $$ LANGUAGE plpgsql;

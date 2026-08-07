@@ -33,7 +33,7 @@
 
     <changeSet id="4" author="pm">
         <sqlFile
-                path=""
+                path="_004_all_full_text_search.sql"
                 relativeToChangelogFile="true"
                 encoding="UTF-8"
                 splitStatements="false"/>
@@ -41,7 +41,7 @@
 
     <changeSet id="5" author="pm">
         <sqlFile
-                path=""
+                path="_005_dynamic_select.sql"
                 relativeToChangelogFile="true"
                 encoding="UTF-8"
                 splitStatements="false"/>
