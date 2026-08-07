@@ -316,36 +316,23 @@ Replace:
 <HOST_IP>
 ```
 
-with your local machine IP address.
+with **CONTAINER_NAME**.
 
+## PostgreSQL Storage
 
-## Find Local Host IP Address
+PostgreSQL uses a Docker named volume:
 
-Linux:
+postgres-data
 
-```bash
-ip addr
-```
+This is intentional because PostgreSQL requires Linux filesystem permissions.
+Using a bind mount from Windows filesystem (`/mnt/c`) may cause permission errors during database initialization.
 
-Find the primary network interface:
+The database scripts are mounted separately:
 
-```text
-eth0
-```
-
-Example:
-
-```text
-inet 192.168.1.100
-```
-
-Use:
-
-```text
-192.168.1.100
-```
-
-as `<HOST_IP>`.
+./docker/kb-sql
+|
+v
+/docker-entrypoint-initdb.d
 
 
 # Successful Migration Output
@@ -408,3 +395,38 @@ Not executed:
 - Training questions
 - Example resources
 - Demo code examples
+
+## Troubleshooting 
+
+```bash
+docker logs <CONTAINER_NAME>
+e.g.
+docker logs knowledge-postgres
+```
+
+Developer Machine (WSL2)
+
+                Docker Network
+              knowledge-network
+                     |
+        +------------+------------+
+        |                         |
+        v                         v
+
+knowledge-postgres          liquibase-pg
+(PostgreSQL 17)             (Liquibase 5)
+
+        |
+        |
+        v
+
+Docker Named Volume
+postgres-data
+
+        |
+        |
+        v
+
+PostgreSQL data files
+(Linux filesystem managed by Docker)
+

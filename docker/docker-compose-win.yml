@@ -13,20 +13,13 @@ services:
       - "5432:5432"
 
     volumes:
-      # initialization scripts
       - ./kb-sql:/docker-entrypoint-initdb.d
-
-      # PostgreSQL data
-      - postgres-data:/var/lib/postgresql/data
-
+      - ./knowledge-db:/var/lib/postgresql/data
     networks:
       - knowledge-network
 
 
-volumes:
-  postgres-data:
-
-
 networks:
+
   knowledge-network:
     name: knowledge-network
