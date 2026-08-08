@@ -1,16 +1,16 @@
-
-create or replace view knowledge.question_projection
-as
-select p.project_name,
-       ql.code,
+create or replace view knowledge.question_projection as
+select q.id,
        t.tag,
        q.question,
-       q.short_answer,
-       r.resource_url,
+       q.short_answer as shortAnswer,
+       r.resource_url as resourceUrl,
        r.description,
+       p.project_name as projectName,
+       q.updated_by   as updatedBy,
+       q.created_by   as createdBy,
+       ql.code        as difficultyCodeLevel,
        ce.language,
-       ce.source_code,
-       q.updated_by
+       ce.source_code as sourceCode
 from knowledge.question q
          left join knowledge.question_level ql on q.question_level_id = ql.id
          left join knowledge.question_tag qt on q.id = qt.question_id

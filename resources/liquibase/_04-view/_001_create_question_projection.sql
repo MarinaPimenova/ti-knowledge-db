@@ -6,7 +6,8 @@ select q.id,
        r.resource_url as resourceUrl,
        r.description,
        p.project_name as projectName,
-       q.updated_by   as updatedBy
+       q.updated_by   as updatedBy,
+       q.created_by   as createdBy
 from knowledge.question q
          left join knowledge.question_tag qt on q.id = qt.question_id
          left join knowledge.tag t on qt.knowledge_tag_id = t.id
