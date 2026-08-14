@@ -1,5 +1,5 @@
 
-DROP FUNCTION knowledge.delete_question;
+DROP FUNCTION IF EXISTS knowledge.delete_question;
 
 CREATE OR REPLACE FUNCTION knowledge.delete_question(
     p_question_id BIGINT

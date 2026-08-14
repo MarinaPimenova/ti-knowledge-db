@@ -16,6 +16,15 @@
     </changeSet>
 
     <changeSet id="2" author="pm">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*)
+                FROM pg_tables
+                WHERE schemaname = 'knowledge'
+                  AND tablename =
+                      'project'
+            </sqlCheck>
+        </preConditions>
         <sqlFile
                 path="_002_create_project_table.sql"
                 relativeToChangelogFile="true"
