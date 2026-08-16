@@ -1,24 +1,74 @@
-create or replace view knowledge.question_projection as
-select q.id,
-       t.tag,
-       q.question,
-       q.short_answer as shortAnswer,
-       r.resource_url as resourceUrl,
-       r.description,
-       p.project_name as projectName,
-       q.updated_by   as updatedBy,
-       q.created_by   as createdBy,
-       ql.code        as difficultyCodeLevel,
-       ce.language,
-       ce.source_code as sourceCode
-from knowledge.question q
-         left join knowledge.question_level ql on q.question_level_id = ql.id
-         left join knowledge.question_tag qt on q.id = qt.question_id
-         left join knowledge.tag t on qt.knowledge_tag_id = t.id
-         left join knowledge.question_resource qr on q.id = qr.question_id
-         left join knowledge.resource r on qr.resource_id = r.id
-         left join knowledge.project_question pq on q.id = pq.question_id
-         left join knowledge.project p on pq.project_id = p.id
-         left join knowledge.question_code_example qce on q.id = qce.question_id
-         left join knowledge.code_example ce on qce.code_example_id = ce.id
+CREATE OR REPLACE VIEW knowledge.question_projection AS
+
+SELECT
+    q.id,
+    q.question,
+    q.short_answer              AS short_answer,
+    q.detailed_answer           AS detailed_answer,
+
+    (
+        SELECT jsonb_build_object(
+                       'questionLevelId', ql.id,
+                       'difficultyCode', ql.code
+               )
+        FROM knowledge.question_level ql
+        WHERE ql.id = q.question_level_id
+    ) AS question_level,
+
+    (
+        SELECT jsonb_build_object(
+                       'language', ce.language,
+                       'sourceCode', ce.source_code
+               )
+        FROM knowledge.question_code_example qce
+                 JOIN knowledge.code_example ce
+                      ON ce.id = qce.code_example_id
+        WHERE qce.question_id = q.id
+        LIMIT 1
+    ) AS code_example,
+
+    (
+        SELECT jsonb_agg(
+                       jsonb_build_object(
+                               'id', t.id,
+                               'tag', t.tag
+                       ) ORDER BY t.tag
+               )
+        FROM knowledge.question_tag qt
+                 JOIN knowledge.tag t
+                      ON t.id = qt.knowledge_tag_id
+        WHERE qt.question_id = q.id
+    ) AS tags,
+
+    (
+        SELECT jsonb_agg(
+                       jsonb_build_object(
+                               'id', r.id,
+                               'url', r.resource_url,
+                               'description', r.description
+                       )
+               )
+        FROM knowledge.question_resource qr
+                 JOIN knowledge.resource r
+                      ON r.id = qr.resource_id
+        WHERE qr.question_id = q.id
+    ) AS resources,
+
+    (
+        SELECT jsonb_agg(
+                       jsonb_build_object(
+                               'id', p.id,
+                               'name', p.project_name
+                       )
+               )
+        FROM knowledge.project_question pq
+                 JOIN knowledge.project p
+                      ON p.id = pq.project_id
+        WHERE pq.question_id = q.id
+    ) AS projects,
+
+    q.created_by,
+    q.updated_by
+
+FROM knowledge.question q
 ;
