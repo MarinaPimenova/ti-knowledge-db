@@ -13,7 +13,7 @@ services:
       - "5432:5432"
 
     volumes:
-      - ./kb-sql:/docker-entrypoint-initdb.d
+      - ./kb-scripts:/docker-entrypoint-initdb.d
       - ./knowledge-db:/var/lib/postgresql/data
     networks:
       - knowledge-network

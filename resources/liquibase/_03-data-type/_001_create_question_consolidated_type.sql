@@ -1,10 +1,12 @@
 DO
 $$
     BEGIN
-        if not exists(select 1
-                      from pg_type
-                      where typname = 'question_type'
-                        and typnamespace = (select oid from pg_namespace where nspname = 'knowledge')) then create type knowledge.question_type as
+        if not exists(
+        select 1 from pg_type
+        where typname = 'question_type'
+        and typnamespace = (select oid from pg_namespace where nspname = 'knowledge'))
+        then
+        create type knowledge.question_type as
         (
             level_code   varchar(255),
             tag          varchar(255),

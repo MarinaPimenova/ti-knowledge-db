@@ -14,7 +14,7 @@ services:
 
     volumes:
       # initialization scripts
-      - ./kb-sql:/docker-entrypoint-initdb.d
+      - ./kb-scripts:/docker-entrypoint-initdb.d
 
       # PostgreSQL data
       - postgres-data:/var/lib/postgresql/data

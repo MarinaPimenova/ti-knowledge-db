@@ -54,4 +54,28 @@
                 encoding="UTF-8"
                 splitStatements="false"/>
     </changeSet>
+
+    <changeSet id="7" author="pm">
+        <sqlFile
+                path="_007_check_array_null_values.sql"
+                relativeToChangelogFile="true"
+                encoding="UTF-8"
+                splitStatements="false"/>
+    </changeSet>
+
+    <changeSet id="8" author="pm">
+        <sqlFile
+                path="_008_get_filtered_questions.sql"
+                relativeToChangelogFile="true"
+                encoding="UTF-8"
+                splitStatements="false"/>
+    </changeSet>
+
+    <changeSet id="9" author="pm">
+        <sqlFile
+                path="_009_create_view_filtered_questions.sql"
+                relativeToChangelogFile="true"
+                encoding="UTF-8"
+                splitStatements="false"/>
+    </changeSet>
 </databaseChangeLog>
