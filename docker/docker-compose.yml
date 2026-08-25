@@ -21,8 +21,6 @@ services:
 
 volumes:
   knowledge-db-data:
-
-
 networks:
   knowledge-network:
     name: knowledge-network
