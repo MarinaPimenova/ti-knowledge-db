@@ -1,7 +1,6 @@
 INSERT INTO knowledge.tag
 (category_id, tag, description, created_by, created_date)
 VALUES
-
 -- Java
 (1,'Streams','Java Stream API','SYSTEM',now()),
 (1,'Virtual Threads','Project Loom','SYSTEM',now()),
@@ -55,4 +54,6 @@ VALUES
 (10,'Event-Driven Architecture','EDA','SYSTEM',now()),
 (10,'Resilience4j','Resilience library','SYSTEM',now()),
 (10,'API Gateway','Gateway pattern','SYSTEM',now()),
-(10,'Backend for Frontend','BFF pattern','SYSTEM',now());
+(10,'Backend for Frontend','BFF pattern','SYSTEM',now()),
+-- General
+(11,'General','When needed tag is absent','SYSTEM',now());
