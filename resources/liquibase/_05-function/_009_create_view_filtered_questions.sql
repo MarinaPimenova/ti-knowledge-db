@@ -37,6 +37,7 @@ BEGIN
            tags_aggregation.tag_list::varchar         as tags
     from filtered_question fq
            left join projects_aggregation on fq.id = projects_aggregation.question_id
-           left join tags_aggregation on fq.id = tags_aggregation.question_id;
+           left join tags_aggregation on fq.id = tags_aggregation.question_id
+    order by fq.id desc;
 END;
 $$ LANGUAGE plpgsql;

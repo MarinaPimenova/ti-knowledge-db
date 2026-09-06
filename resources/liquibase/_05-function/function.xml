@@ -78,4 +78,21 @@
                 encoding="UTF-8"
                 splitStatements="false"/>
     </changeSet>
+
+    <changeSet id="10" author="pm">
+        <sqlFile
+                path="_010_questions_aggregated_by_tags.sql"
+                relativeToChangelogFile="true"
+                encoding="UTF-8"
+                splitStatements="false"/>
+    </changeSet>
+
+    <changeSet id="11" author="pm">
+        <sqlFile
+                path="_011_find_questions_by_pattern.sql"
+                relativeToChangelogFile="true"
+                encoding="UTF-8"
+                splitStatements="false"/>
+    </changeSet>
+
 </databaseChangeLog>

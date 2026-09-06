@@ -6,8 +6,7 @@ SELECT
     q.short_answer              AS short_answer,
     q.detailed_answer           AS detailed_answer,
 
-    (
-        SELECT jsonb_build_object(
+    (SELECT jsonb_build_object(
                        'questionLevelId', ql.id,
                        'difficultyCode', ql.code
                )
@@ -15,11 +14,9 @@ SELECT
         WHERE ql.id = q.question_level_id
     ) AS question_level,
 
-    (
-        SELECT jsonb_build_object(
+    (SELECT jsonb_build_object(
                        'language', ce.language,
-                       'sourceCode', ce.source_code
-               )
+                       'sourceCode', ce.source_code)
         FROM knowledge.question_code_example qce
                  JOIN knowledge.code_example ce
                       ON ce.id = qce.code_example_id
@@ -28,39 +25,37 @@ SELECT
     ) AS code_example,
 
     (
-        SELECT jsonb_agg(
-                       jsonb_build_object(
+        -- [
+        --   {
+        --     "id": 101,
+        --     "tag": "Java"
+        --   },
+        --   {
+        --     "id": 204,
+        --     "tag": "Spring Boot"
+        --   }
+        -- ]
+        SELECT jsonb_agg(jsonb_build_object(
                                'id', t.id,
-                               'tag', t.tag
-                       ) ORDER BY t.tag
-               )
+                               'tag', t.tag) ORDER BY t.tag)
         FROM knowledge.question_tag qt
                  JOIN knowledge.tag t
                       ON t.id = qt.knowledge_tag_id
         WHERE qt.question_id = q.id
     ) AS tags,
 
-    (
-        SELECT jsonb_agg(
-                       jsonb_build_object(
+    (SELECT jsonb_agg(jsonb_build_object(
                                'id', r.id,
                                'url', r.resource_url,
-                               'description', r.description
-                       )
-               )
+                               'description', r.description))
         FROM knowledge.question_resource qr
                  JOIN knowledge.resource r
                       ON r.id = qr.resource_id
         WHERE qr.question_id = q.id
     ) AS resources,
-
-    (
-        SELECT jsonb_agg(
-                       jsonb_build_object(
+    (SELECT jsonb_agg(jsonb_build_object(
                                'id', p.id,
-                               'name', p.project_name
-                       )
-               )
+                               'name', p.project_name))
         FROM knowledge.project_question pq
                  JOIN knowledge.project p
                       ON p.id = pq.project_id
@@ -68,7 +63,10 @@ SELECT
     ) AS projects,
 
     q.created_by,
-    q.updated_by
+    q.updated_by,
+    q.created_date,
+    q.modified_date
 
-FROM knowledge.question q
+from knowledge.question q
+order by q.id desc
 ;
