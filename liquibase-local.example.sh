@@ -1,22 +1,18 @@
 #!/usr/bin/env bash
 
-# /mnt/c/Users/<USER>/sb-projects
-
 set -ex
 
-##echo "contextEnv: ${contextEnv}"
-##DB_ADDRESS=jdbc:postgresql://localhost:5432/knowledge_db
-# url=jdbc:postgresql://host.docker.internal:5432/knowledge_db
-DB_ADDRESS=
-DB_PASSWORD=qwerty
-DB_username=knowledge_user
+# Set variables from environment if provided, otherwise fall back to defaults
+DB_ADDRESS="${DB_ADDRESS:-ti-knowledge-db:5432}"
+DB_PASSWORD="${DB_PASSWORD:-qwerty}"
+DB_USERNAME="${DB_USERNAME:-knowledge_user}"
 
-export PGPASSWORD="${DB_PASSWORD}"
-# psql -h ${DB_ADDRESS} -U ${DB_username} -d knowledge_db -tc "CREATE SCHEMA IF NOT EXISTS knowledge AUTHORIZATION knowledge_user;"
-docker run --rm -v ./resources/liquibase:/liquibase/changelog \
-  liquibase-pg:latest \
-  --url=jdbc:postgresql://${DB_ADDRESS}:5432/knowledge_db \
-  --username=${DB_username} \
+docker run --rm \
+  --network knowledge-network \
+  -v ./resources/liquibase:/liquibase/changelog \
+  mnpma/liquibase-pg:5.0 \
+  --url=jdbc:postgresql://${DB_ADDRESS}/knowledge_db \
+  --username=${DB_USERNAME} \
   --password=${DB_PASSWORD} \
   --changeLogFile=liquibase-changelog.xml \
   --contexts=dev \
