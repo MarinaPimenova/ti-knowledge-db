@@ -14,5 +14,12 @@
                 encoding="UTF-8"
                 splitStatements="false"/>
     </changeSet>
+    <changeSet id="2" author="pm">
+        <sqlFile
+                path="_002_create_filter_params_type.sql"
+                relativeToChangelogFile="true"
+                encoding="UTF-8"
+                splitStatements="false"/>
+    </changeSet>
 
 </databaseChangeLog>

@@ -314,7 +314,7 @@ docker
 │
 ├── docker-compose.yml
 │
-└── kb-sql
+└── kb-scripts
     └── init.sql
 ```
 
@@ -461,7 +461,7 @@ Using a bind mount from Windows filesystem (`/mnt/c`) may cause permission error
 
 The database scripts are mounted separately:
 
-./docker/kb-sql
+./docker/kb-scripts
 |
 v
 /docker-entrypoint-initdb.d

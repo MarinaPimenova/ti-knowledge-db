@@ -10,4 +10,5 @@ VALUES
     ('Containers', 'Docker and Kubernetes', 'SYSTEM', now()),
     ('DevOps', 'CI/CD and automation', 'SYSTEM', now()),
     ('Observability', 'Logging, Metrics and Tracing', 'SYSTEM', now()),
-    ('Architecture', 'Software Architecture and Design Patterns', 'SYSTEM', now());
+    ('Architecture', 'Software Architecture and Design Patterns', 'SYSTEM', now()),
+    ('General', 'When needed category is absent', 'SYSTEM', now());

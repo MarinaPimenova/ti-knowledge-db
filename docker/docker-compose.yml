@@ -1,9 +1,8 @@
 services:
 
-  postgres:
+  ti-knowledge-db:
     image: postgres:17
-    container_name: knowledge-postgres
-
+    container_name: ti-knowledge-db
     environment:
       POSTGRES_DB: knowledge_db
       POSTGRES_USER: knowledge_user
@@ -11,22 +10,17 @@ services:
 
     ports:
       - "5432:5432"
-
     volumes:
       # initialization scripts
-      - ./kb-sql:/docker-entrypoint-initdb.d
-
+      - ./knowledge-init-scripts:/docker-entrypoint-initdb.d
       # PostgreSQL data
-      - postgres-data:/var/lib/postgresql/data
+      - knowledge-db-data:/var/lib/postgresql/data
 
     networks:
       - knowledge-network
 
-
 volumes:
-  postgres-data:
-
-
+  knowledge-db-data:
 networks:
   knowledge-network:
     name: knowledge-network
