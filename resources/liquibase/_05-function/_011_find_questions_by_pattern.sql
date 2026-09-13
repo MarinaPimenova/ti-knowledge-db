@@ -1,33 +1,34 @@
 -- find_questions_by_pattern
 DROP FUNCTION IF EXISTS knowledge.find_questions_by_pattern(pattern VARCHAR);
 
-CREATE OR REPLACE FUNCTION knowledge.find_questions_by_pattern(pattern VARCHAR)
-    RETURNS TABLE
-            (
-                id          int8,
-                tags        varchar,
-                question    text,
-                shortAnswer text,
-                resources   varchar,
-                projectName varchar(1024),
-                createdby varchar
-            )
-AS
-$$
+CREATE OR REPLACE FUNCTION knowledge.find_questions_by_pattern(pattern character varying)
+    RETURNS TABLE(
+                     question_id bigint,
+                     tags character varying,
+                     question text,
+                     shortanswer text,
+                     resources character varying,
+                     projectname character varying,
+                     createdby character varying
+                 )
+    LANGUAGE plpgsql
+AS $$
 BEGIN
-
     RETURN QUERY
-        with questions_by_pattern(question_id)
-                 as (select id as question_id
-                     from knowledge.all_full_text_search(pattern))
-        select qdp.id::int8,
+        WITH questions_by_pattern(q_id) AS (
+            SELECT fts.id
+            FROM knowledge.all_full_text_search(pattern) AS fts
+        )
+        SELECT qdp.id::int8 as question_id,
                qdp.tags::varchar,
-               qdp.question::varchar,
-               qdp.shortAnswer::varchar,
+               qdp.question::text,
+               qdp.shortAnswer::text,
                qdp.resources::varchar,
                qdp.projectName::varchar,
                qdp.createdby::varchar
-        from knowledge.question_dashboard_projection qdp
-                 inner join questions_by_pattern qbp on qbp.question_id = qdp.id;
+        FROM knowledge.question_dashboard_projection qdp
+                 INNER JOIN questions_by_pattern qbp ON qbp.q_id = qdp.id;
 END;
-$$ LANGUAGE plpgsql;
+$$;
+
+ALTER FUNCTION knowledge.find_questions_by_pattern(varchar) OWNER TO knowledge_user;
